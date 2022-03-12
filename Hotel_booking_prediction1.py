@@ -14,16 +14,14 @@ X = X.dropna()
 
 y = X.pop('required_car_parking_spaces')
 
-from sklearn.preprocessing import OneHotEncoder,LabelEncoder,OrdinalEncoder
+from sklearn.preprocessing import OneHotEncoder,LabelEncoder
 from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
 
 # selecting columns that are type object to transform
-cols = [0,4,12,13,14,15,19,20,26,29,30]
-o_cols = [22]
+cols = [0,4,12,13,14,15,19,20,22,26,29,30]
 
 trans = make_column_transformer((OneHotEncoder(sparse=False,handle_unknown='ignore'),cols),
-                                (OrdinalEncoder(),o_cols),
                                 remainder= 'passthrough')
 le = LabelEncoder()
 y = le.fit_transform(y)
